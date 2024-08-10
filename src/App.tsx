@@ -1,7 +1,8 @@
 import './App.css'
 import InputField from './components/InputField';
 import React,{useState} from 'react';
-import  {Todo,list}  from './models/ToDo';
+import  {Todo}  from './models/Todo.ts';
+import TodoList from './components/TodoList';
 
 let name : string;
 let age : number  | string; //Union of type => could be anything
@@ -68,7 +69,7 @@ const App : React.FC = () => {
     e.preventDefault();
 
     if (todo){
-      setTodos([...todos, {id: Date.now(),todo, isDone: true}]);
+      setTodos([...todos, {id: Date.now(),todo, isDone: false}]);
       setTodo("");
       
     }
@@ -84,6 +85,7 @@ const App : React.FC = () => {
       <div className="App">
         <span className="heading">TASKIFY</span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+        <TodoList todos={todos} setTodos={setTodos}/>
   
       </div>
     </>
